@@ -17,6 +17,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     @Input('flexImageSize') providedImageSize: number = 7
     @Input('galleryName') providedGalleryName: string = ''
     @Input('metadataUri') providedMetadataUri: string = undefined
+    @Input('metadataArray') providedMetadataArray: Array<any> = undefined
 
     @Output() viewerChange = new EventEmitter<boolean>()
 
@@ -69,34 +70,54 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     private fetchDataAndRender() {
-        this.imageDataCompletePath = this.providedMetadataUri
-
-        if (!this.providedMetadataUri) {
-            this.imageDataCompletePath = this.providedGalleryName != '' ?
-            this.imageDataStaticPath + this.providedGalleryName + '/' + this.dataFileName :
-            this.imageDataStaticPath + this.dataFileName
+        if (this.providedMetadataUri && this.providedMetadataArray) {
+            console.error('You have provided both [providedMetadataUri] and [providedMetadataArray]. Please choose one or the other.')
+            return
         }
+        
+        if (this.providedMetadataUri) {
+            this.imageDataCompletePath = this.providedMetadataUri
 
-        this.http.get(this.imageDataCompletePath)
-            .map((res: Response) => res.json())
-            .subscribe(
-                data => {
-                    this.images = data
-                    this.ImageService.updateImages(this.images)
+            if (!this.providedMetadataUri) {
+                this.imageDataCompletePath = this.providedGalleryName != '' ?
+                this.imageDataStaticPath + this.providedGalleryName + '/' + this.dataFileName :
+                this.imageDataStaticPath + this.dataFileName
+            }
 
-                    this.images.forEach((image) => {
-                        image['galleryImageLoaded'] = false
-                        image['viewerImageLoaded'] = false
-                        image['srcAfterFocus'] = ''
-                    })
-                    // twice, single leads to different strange browser behaviour
-                    this.render()
-                    this.render()
-                },
-                err => this.providedMetadataUri ?
-                  console.error("Provided endpoint '"+this.providedMetadataUri+"' did not serve metadata correctly or in the expected format. \n\nSee here for more information: https://github.com/BenjaminBrandmeier/angular2-image-gallery/blob/master/docs/externalDataSource.md,\n\nOriginal error: " + err) :
-                  console.error("Did you run the convert script from angular2-image-gallery for your images first? Original error: " + err),
-                () => undefined)
+            this.http.get(this.imageDataCompletePath)
+                .map((res: Response) => res.json())
+                .subscribe(
+                    data => {
+                        this.images = data
+                        this.ImageService.updateImages(this.images)
+
+                        this.images.forEach((image) => {
+                            image['galleryImageLoaded'] = false
+                            image['viewerImageLoaded'] = false
+                            image['srcAfterFocus'] = ''
+                        })
+                        // twice, single leads to different strange browser behaviour
+                        this.render()
+                        this.render()
+                    },
+                    err => this.providedMetadataUri ?
+                      console.error("Provided endpoint '"+this.providedMetadataUri+"' did not serve metadata correctly or in the expected format. \n\nSee here for more information: https://github.com/BenjaminBrandmeier/angular2-image-gallery/blob/master/docs/externalDataSource.md,\n\nOriginal error: " + err) :
+                      console.error("Did you run the convert script from angular2-image-gallery for your images first? Original error: " + err),
+                    () => undefined)
+        } else if(this.providedMetadataArray) {
+            this.images = this.providedMetadataArray
+            this.ImageService.updateImages(this.images)
+
+            this.images.forEach((image) => {
+                image['galleryImageLoaded'] = false
+                image['viewerImageLoaded'] = false
+                image['srcAfterFocus'] = ''
+            })
+            // twice, single leads to different strange browser behaviour
+            this.render()
+            this.render()
+        }
+        
     }
 
     private render() {
