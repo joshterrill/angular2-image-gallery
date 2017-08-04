@@ -34,7 +34,7 @@
   "typings": "./index.d.ts",
   "main": "./index.js",
   "bin": {
-    "angular2-image-gallery": "./convert.js"
+    "angular2-image-gallery": "./misc/convert.js"
   },
   "private": false,
   "dependencies": {
