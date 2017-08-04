@@ -26,7 +26,7 @@
     "browserstack-oidamo": "ng e2e --serve=false --config=browserstack/browserstack_oidamo.conf.js",
     "browserstack-local": "ng e2e --config=browserstack/browserstack_local.conf.js",
     "browserstack-travis": "ng e2e --config=browserstack/browserstack_travis.conf.js",
-    "convert": "node convert.js",
+    "convert": "node misc/convert.js",
     "clear-lib": "rimraf lib",
     "ngc-build": "ngc -p ./src/tsconfig.ngc.json",
     "dist": "npm run clear-lib && npm run ngc-build"
