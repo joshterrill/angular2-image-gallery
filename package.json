@@ -1,19 +1,19 @@
 {
-  "name": "angular2-image-gallery",
+  "name": "cws-angular2-image-gallery",
   "version": "1.0.0",
   "description": "Responsive Angular 2 image gallery",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BenjaminBrandmeier/angular2-image-gallery.git"
+    "url": "git+https://github.com/joshterrill/angular2-image-gallery.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BenjaminBrandmeier/angular2-image-gallery/issues"
+    "url": "https://github.com/joshterrill/angular2-image-gallery/issues"
   },
-  "homepage": "https://github.com/BenjaminBrandmeier/angular2-image-gallery#readme",
+  "homepage": "https://github.com/joshterrill/angular2-image-gallery#readme",
   "author": {
-    "name": "Benjamin Brandmeier",
-    "email": "bdvlop@gmail.com"
+    "name": "Josh Terrill",
+    "email": "jterrill@clearwavesoftware.com"
   },
   "angular-cli": {},
   "scripts": {
