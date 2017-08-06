@@ -19,8 +19,10 @@
              class="image"
              [class.active]="img['active']"
              [@imageTransition]="img['transition']"
-             [style.background-image]="img['viewerImageLoaded'] ? 'url('+img[categorySelected]['path']+')' : Math.abs(currentIdx-j) <=1 ? 'url('+img['preview_xxs']['path']+')' : ''"
-             [style.left]="transform+'px'"></div>
+             [style.background-image]="img['viewerImageLoaded'] ? getImage(img[categorySelected]) : Math.abs(currentIdx-j) <=1 ? 'url('+img['preview_xxs']['path']+')' : ''"
+             [style.left]="transform+'px'" style="text-align:center;">
+            <video *ngIf="img[categorySelected].url.includes('.mp4') || img[categorySelected].url.includes('.MP4')" [src]="img[categorySelected].url" style="width: 50%;" controls></video>
+        </div>
 
         <img *ngFor='let img of images; let j = index'
              class="preloading-image"

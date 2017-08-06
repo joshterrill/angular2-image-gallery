@@ -3,15 +3,19 @@
         <div *ngFor='let imgrow of gallery; let i = index'
              class="imagerow"
              [style.margin-bottom.px]="calcImageMargin()">
-            <img #imageElement
-                 *ngFor='let img of imgrow; let j = index'
-                 class="thumbnail"
-                 [style.width.px]="img['width']"
-                 [style.height.px]="img['height']"
-                 (click)="openImageViewer(img)"
-                 [src]="img['srcAfterFocus']"
-                 [style.background]="img.dominantColor"
-                 [style.margin-right.px]="calcImageMargin()"/>
+            <div *ngFor='let img of imgrow; let j = index' (click)="openImageViewer(img)">
+                <div *ngIf="img.Url.includes('.mp4') || img.Url.includes('.MP4')" [ngClass]="{'play-icon-container-show' : !viewerShown, 'play-icon-container-hide': viewerShown}" [style.width.px]="img['width']" [style.height.px]="img['height']">
+                    <i class="fa fa-play-circle fa-4x"></i>
+                </div>
+                <img #imageElement
+                     class="thumbnail"
+                     [style.width.px]="img['width']"
+                     [style.height.px]="img['height']"
+                     [src]="img['srcAfterFocus']"
+                     [style.background]="img.dominantColor"
+                     [style.margin-right.px]="calcImageMargin()"/>
+            </div>
+
         </div>
     </div>
 </div>

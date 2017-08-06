@@ -39,3 +39,25 @@
     width: 0px;
     bottom: 120px;
 }
+
+div.play-icon-container-show {
+    background:rgba(0,0,0,0.5);
+    z-index:9999;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+}
+
+div.play-icon-container-hide {
+    background:rgba(0,0,0,0.5);
+    z-index:-1;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+}
+
+div.play-icon-container-show i {
+    opacity: 0.5;
+    top: calc(50% - 40px);
+    position: relative;
+}

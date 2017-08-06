@@ -290,4 +290,12 @@ export class ViewerComponent {
                 break
         }
     }
+
+    public getImage(img : any) : string {
+        if (img.url.includes('.mp4') || img.url.includes('.MP4')) {
+            return '';
+        } else {
+            return 'url('+img['path']+')';
+        }
+    }
 }

@@ -39,6 +39,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     public images: any[] = []
     public minimalQualityCategory = 'preview_xxs'
     public viewerSubscription: Subscription
+    public viewerShown : boolean;
 
     constructor(public ImageService: ImageService, public http: Http, public ChangeDetectorRef: ChangeDetectorRef) {
     }
@@ -46,7 +47,10 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     public ngOnInit() {
         this.fetchDataAndRender()
         this.viewerSubscription = this.ImageService.showImageViewerChanged$
-            .subscribe((visibility: boolean) => this.viewerChange.emit(visibility))
+            .subscribe((visibility: boolean) => {
+                this.viewerChange.emit(visibility);
+                this.viewerShown = visibility;
+            });
     }
 
     public ngOnChanges(changes: SimpleChanges) {
@@ -64,6 +68,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     public openImageViewer(img  : any) {
+        console.log(img);
         this.ImageService.updateImages(this.images)
         this.ImageService.updateSelectedImageIndex(this.images.indexOf(img))
         this.ImageService.showImageViewer(true)
