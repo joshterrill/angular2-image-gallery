@@ -1,4 +1,8 @@
 /* Image gallery */
+::-webkit-scrollbar {
+    display: none;
+}
+
 
 .innerGalleryContainer {
     position: relative;
@@ -10,7 +14,7 @@
     overflow: hidden;
 }
 
-.galleryContainer img:last-child {
+.galleryContainer .imageContainer:last-child {
     /* important to overwrite inline css and prevent chrome flickering bug */
     margin-right: -1px !important;
 }
@@ -28,15 +32,19 @@
     display: flex;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
+.imageContainer {
 
+}
+.imageContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 .asyncLoadingContainer {
     position: absolute;
     background-color: transparent;
-    height: 0px;
-    width: 0px;
+    height: 0;
+    width: 0;
     bottom: 120px;
 }
 
