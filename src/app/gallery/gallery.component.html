@@ -1,19 +1,18 @@
-<div #galleryContainer class="galleryContainer">
+<div #galleryContainer class="galleryContainer" [id]="uuid">
     <div class="innerGalleryContainer">
         <div *ngFor='let imgrow of gallery; let i = index'
              class="imagerow"
              [style.margin-bottom.px]="calcImageMargin()">
-            <div *ngFor='let img of imgrow; let j = index' (click)="openImageViewer(img)">
+            <div *ngFor='let img of imgrow; let j = index' class="imageContainer"
+                 (click)="openImageViewer(img)"
+                 [style.margin-right.px]="calcImageMargin()"
+                 [style.width.px]="img['width']"
+                 [style.height.px]="img['height']"
+                 [style.background]="img.dominantColor">
                 <div *ngIf="img.Url.includes('.mp4') || img.Url.includes('.MP4')" [ngClass]="{'play-icon-container-show' : !viewerShown, 'play-icon-container-hide': viewerShown}" [style.width.px]="img['width']" [style.height.px]="img['height']">
                     <i class="fa fa-play-circle fa-4x"></i>
                 </div>
-                <img #imageElement
-                     class="thumbnail"
-                     [style.width.px]="img['width']"
-                     [style.height.px]="img['height']"
-                     [src]="img['srcAfterFocus']"
-                     [style.background]="img.dominantColor"
-                     [style.margin-right.px]="calcImageMargin()"/>
+                <img #imageElement [src]="img['srcAfterFocus']"/><!--class="thumbnail"-->
             </div>
 
         </div>
