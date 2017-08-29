@@ -7,7 +7,7 @@
                  [style.margin-right.px]="calcImageMargin()"
                  [style.width.px]="img['width']"
                  [style.height.px]="img['height']">
-                <div *ngIf="img.IsAuthor" class="remove-media-container"><i class="fa fa-close remove-media" (click)="removeMedia(img)"></i></div>
+                <i class="fa fa-close remove-media" (click)="removeMedia(img)"></i>
                 <div (click)="openImageViewer(img)" *ngIf="img.Url.includes('.mp4') || img.Url.includes('.MP4')" [ngClass]="{'play-icon-container-show' : !viewerShown, 'play-icon-container-hide': viewerShown}" [style.width.px]="img['width']" [style.height.px]="img['height']">
                     <i class="fa fa-play-circle fa-4x"></i>
                 </div>

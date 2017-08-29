@@ -33,7 +33,7 @@
 }
 
 .imageContainer {
-
+    position: relative;
 }
 .imageContainer img {
     height: 100%;
@@ -71,10 +71,11 @@ div.play-icon-container-show i {
 }
 
 i.remove-media {
-    position: relative;
+    position: absolute;
     color: white;
     font-size: 24px;
-    top: 28px;
-    left: 250px;
+    top: 5px;
+    left: 10px;
     cursor: pointer;
+    text-shadow: 0 0 2px #000000;
 }
