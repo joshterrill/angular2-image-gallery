@@ -4,15 +4,14 @@
              class="imagerow"
              [style.margin-bottom.px]="calcImageMargin()">
             <div *ngFor='let img of imgrow; let j = index' class="imageContainer"
-                 (click)="openImageViewer(img)"
                  [style.margin-right.px]="calcImageMargin()"
                  [style.width.px]="img['width']"
-                 [style.height.px]="img['height']"
-                 [style.background]="img.dominantColor">
-                <div *ngIf="img.Url.includes('.mp4') || img.Url.includes('.MP4')" [ngClass]="{'play-icon-container-show' : !viewerShown, 'play-icon-container-hide': viewerShown}" [style.width.px]="img['width']" [style.height.px]="img['height']">
+                 [style.height.px]="img['height']">
+                <div *ngIf="img.IsAuthor" class="remove-media-container"><i class="fa fa-close remove-media" (click)="removeMedia(img)"></i></div>
+                <div (click)="openImageViewer(img)" *ngIf="img.Url.includes('.mp4') || img.Url.includes('.MP4')" [ngClass]="{'play-icon-container-show' : !viewerShown, 'play-icon-container-hide': viewerShown}" [style.width.px]="img['width']" [style.height.px]="img['height']">
                     <i class="fa fa-play-circle fa-4x"></i>
                 </div>
-                <img #imageElement [src]="img['srcAfterFocus']"/><!--class="thumbnail"-->
+                <img (click)="openImageViewer(img)" #imageElement [src]="img['srcAfterFocus']"/><!--class="thumbnail"-->
             </div>
 
         </div>

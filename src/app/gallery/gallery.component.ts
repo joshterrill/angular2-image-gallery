@@ -21,6 +21,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
 
     @Output() viewerChange = new EventEmitter<boolean>();
     @Output() selectedImage = new EventEmitter<boolean>();
+    @Output() removeImage = new EventEmitter<boolean>();
 
     @ViewChild('galleryContainer') galleryContainer: ElementRef;
     @ViewChildren('imageElement') imageElements: QueryList<any>;
@@ -85,7 +86,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     public openImageViewer(img  : any) {
-        console.log(img);
+        // console.log(img);
         if (this.isSelectedImageUsed) {
             this.selectedImage.emit(img);
         } else {
@@ -93,6 +94,10 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
             this.ImageService.updateSelectedImageIndex(this.images.indexOf(img));
             this.ImageService.showImageViewer(true);
         }
+    }
+
+    public removeMedia(img: any) {
+        this.removeImage.emit(img)
     }
 
     private fetchDataAndRender() {

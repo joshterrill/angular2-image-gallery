@@ -20,9 +20,9 @@
 }
 
 .galleryContainer img:hover {
-    -webkit-filter: brightness(50%);
-    filter: brightness(50%);
-    transition: all ease-out 0.2s;
+    /*-webkit-filter: brightness(50%);*/
+    /*filter: brightness(50%);*/
+    /*transition: all ease-out 0.2s;*/
     cursor: pointer;
 }
 
@@ -68,4 +68,13 @@ div.play-icon-container-show i {
     opacity: 0.5;
     top: calc(50% - 40px);
     position: relative;
+}
+
+i.remove-media {
+    position: relative;
+    color: white;
+    font-size: 24px;
+    top: 28px;
+    left: 250px;
+    cursor: pointer;
 }
