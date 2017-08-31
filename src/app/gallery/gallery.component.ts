@@ -7,6 +7,9 @@ import {ImageService} from "../services/image.service";
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 
+// hack to get access to window
+declare let window: any;
+
 @Component({
     selector: 'gallery',
     templateUrl: './gallery.component.html',
@@ -26,9 +29,10 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     @ViewChild('galleryContainer') galleryContainer: ElementRef;
     @ViewChildren('imageElement') imageElements: QueryList<any>;
 
-    @HostListener('window:scroll', ['$event']) triggerCycle(event : any) {
+    // Replaced with window.addEventListener
+    /*@HostListener('scroll', ['$event']) triggerCycle(event : any) {
         this.scaleGallery()
-    }
+    }*/
 
     @HostListener('window:resize', ['$event']) windowResize(event : any) {
 
@@ -54,7 +58,11 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
 
     public containerWidth: number;
 
-    constructor(public ImageService: ImageService, public http: Http, public ChangeDetectorRef: ChangeDetectorRef) { }
+    constructor(public ImageService: ImageService, public http: Http, public ChangeDetectorRef: ChangeDetectorRef) {
+        window.addEventListener('scroll', e => {
+            this.scaleGallery()
+        }, true);
+    }
 
     public ngOnInit() {
         this.fetchDataAndRender();
