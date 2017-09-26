@@ -21,6 +21,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     @Input('galleryName') providedGalleryName: string = '';
     @Input('metadataUri') providedMetadataUri: string = undefined;
     @Input('metadataArray') providedMetadataArray: Array<any> = undefined;
+    @Input('canRemoveImage') canRemoveImage: boolean = false;
 
     @Output() viewerChange = new EventEmitter<boolean>();
     @Output() selectedImage = new EventEmitter<boolean>();
