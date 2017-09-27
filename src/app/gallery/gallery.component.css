@@ -78,4 +78,5 @@ i.remove-media {
     left: 10px;
     cursor: pointer;
     text-shadow: 0 0 2px #000000;
+    z-index: 999999;
 }
