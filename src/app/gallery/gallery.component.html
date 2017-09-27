@@ -11,7 +11,7 @@
                 <div (click)="openImageViewer(img)" *ngIf="img.Url.includes('.mp4') || img.Url.includes('.MP4')" [ngClass]="{'play-icon-container-show' : !viewerShown, 'play-icon-container-hide': viewerShown}" [style.width.px]="img['width']" [style.height.px]="img['height']">
                     <i class="fa fa-play-circle fa-4x"></i>
                 </div>
-                <img (click)="openImageViewer(img)" #imageElement [src]="img['srcAfterFocus']"/><!--class="thumbnail"-->
+                <img *ngIf="!img.Url.toLowerCase().includes('mp4')" (click)="openImageViewer(img)" #imageElement [src]="img['srcAfterFocus']"/><!--class="thumbnail"-->
             </div>
 
         </div>
