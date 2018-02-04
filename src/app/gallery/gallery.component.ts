@@ -60,7 +60,7 @@ export class GalleryComponent implements OnInit, OnDestroy, OnChanges {
     public containerWidth: number;
 
     constructor(public ImageService: ImageService, public http: Http, public ChangeDetectorRef: ChangeDetectorRef) {
-        window.addEventListener('scroll', e => {
+        window.addEventListener('scroll', (e: Event) => {
             this.scaleGallery()
         }, true);
     }

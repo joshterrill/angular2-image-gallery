@@ -45,4 +45,3 @@ Thumbs.db
 images_to_convert/
 misc/upload-prod.sh
 misc/upload-temp.sh
-src/lib/

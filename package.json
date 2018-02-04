@@ -1,6 +1,6 @@
 {
   "name": "cws-angular2-image-gallery",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Responsive Angular 2 image gallery",
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
     "ngc-build": "ngc -p ./src/tsconfig.ngc.json",
     "dist": "npm run clear-lib && npm run ngc-build"
   },
-  "typings": "./index.d.ts",
-  "main": "./index.js",
+  "typings": "./src/lib/index.d.ts",
+  "main": "./src/lib/index.js",
   "bin": {
     "angular2-image-gallery": "./misc/convert.js"
   },
